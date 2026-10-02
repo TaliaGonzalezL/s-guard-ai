@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 streamlit>=1.30.0
 pandas>=2.0.0
+=======
+streamlit
+pandas
+>>>>>>> adf727e5d8ac310ca32ed392bc199f1b34b01839
