@@ -1,5 +1,4 @@
 import streamlit as st
-<<<<<<< HEAD
 from router import HybridSLMRouter
 
 st.set_page_config(page_title="SovereignGuard: SLM Router 🛡️", layout="wide")
