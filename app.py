@@ -106,7 +106,6 @@ def main():
                 st.write(f"**Detalle de la Acción:** {log['action_taken']}")
                 st.write(f"**Timestamp (UTC):** {log['timestamp']}")
                 st.caption("🔒 Seguridad forense: Trazabilidad inmutable garantizada mediante SovereignGuard Shield bajo cifrado AES-256.")
-=======
 import pandas as pd
 import re
 from shield import SovereignResilienceShield # Importamos nuestro escudo de soberanía actualizado
