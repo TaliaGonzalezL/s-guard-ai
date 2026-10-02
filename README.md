@@ -49,7 +49,9 @@ sovereign-guard-suite/
 ├── shield.py       # Capa de Resiliencia (Escudo Regex y manejo de errores 503/429)
 ├── router.py       # Lógica del Hybrid SLM Router y optimización de costos
 └── app.py          # Panel de Control Principal (Streamlit Dashboard & HITL)
-💡 Core Philosophy: Sovereign Engineering
+```
+
+## 💡 Core Philosophy: Sovereign Engineering
 "La mayoría de los agentes de IA operan en un vacío probabilístico. Si tu arquitectura no permite el control determinista, la memoria relacional y la soberanía humana, tu automatización se romperá en cuanto los procesos dependan de más de un factor crítico."
 — Talia González López, Applied AI Architect
 
