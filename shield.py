@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import logging
 
 # Configuración de logging para observabilidad
@@ -19,7 +18,6 @@ class SovereignResilienceShield:
             logger.error("🚨 [SovereignGuard]: Límite de Cuota Alcanzado (429). Pausando throughput...")
             return "QUOTA_EXCEEDED_HALT"
         return "SUCCESS"
-=======
 import re
 import streamlit as st
 
@@ -76,4 +74,3 @@ class SovereignResilienceShield:
 
         except Exception:
             return "RESCATE_MANUAL_REQUERIDO"
->>>>>>> adf727e5d8ac310ca32ed392bc199f1b34b01839
