@@ -215,7 +215,6 @@ def main():
         st.write(f"**Acción Legal:** Cédula A validada contra reglas de infraestructura financiera")
         st.write("---")
         st.write("Dato: La sincronización con el sistema se realiza bajo protocolos de cifrado AES-256")
->>>>>>> adf727e5d8ac310ca32ed392bc199f1b34b01839
 
 if __name__ == "__main__":
     main()
