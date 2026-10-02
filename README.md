@@ -1,47 +1,63 @@
-# 🛡️ **ProsaGuard AI: The Resilience Orchestrator**
+# 🛡️ **SovereignGuard AI: The Resilience Orchestrator**
 
-Hardening Agentic Workflows for High-Availability Financial Systems
-![alt text](https://img.shields.io/badge/Python-3.12-blue?style=flat-square&logo=python)
+**Hardening Agentic Workflows for High-Availability Financial & Enterprise Systems** 
+![Python](https://img.shields.io/badge/Python-3.12-blue.svg)
+![Streamlit](https://img.shields.io/badge/Streamlit-1.32-red.svg)
+![Orchestration](https://img.shields.io/badge/AI-SLM%20%2F%20Multi--Agent-green.svg)
+![Sovereignty](https://img.shields.io/badge/Sovereignty-Proprietary-orange.svg)
 
-![alt text](https://img.shields.io/badge/Streamlit-1.32-FF4B4B?style=flat-square&logo=streamlit)
+---
 
-![alt text](https://img.shields.io/badge/Orchestration-LangChain-green?style=flat-square)
+## 📑 Executive Summary
 
-![alt text](https://img.shields.io/badge/Sovereignty-Proprietary-gold?style=flat-square)
+**SovereignGuard AI** no es una implementación de IA convencional; es una **Capa de Resiliencia Determinista y Enrutamiento Híbrido** diseñada para proteger la integridad operacional, minimizar la latencia y controlar los costos de inferencia en sistemas empresariales y de alta frecuencia.
 
-## 📋 **Executive Summary**
+Diseñado para resolver el *"Reliability Gap"* (Brecha de Confiabilidad) y los costos descontrolados de los modelos de lenguaje actuales, SovereignGuard asegura que la automatización agéntica nunca comprometa la Atomicidad de los Datos, la seguridad de la infraestructura ni la soberanía de decisión humana.
 
-ProsaGuard AI no es una implementación de IA convencional; es una Capa de Resiliencia Determinista diseñada para proteger la integridad de las transacciones financieras en el Switch de pagos de México.
+🔗 **Live Production Demo:** [s-guard-ai.streamlit.app](https://s-guard-ai.streamlit.app)
 
-Inspirado en la visión de la "Plataforma Invisible" de PROSA, este orquestador agéntico resuelve el "Reliability Gap" (Brecha de Confiabilidad) de los modelos de lenguaje actuales, asegurando que la automatización nunca comprometa la Atomicidad de los Datos ni la Seguridad Bancaria.
+---
 
-## 🚀 **Key Technical Differentiators**
-1. The Resilience Shield (Deterministic Recovery Layer)
+## 🚀 Key Technical Differentiators
 
-Implementación de un Cincel Regex que intercepta el no-determinismo de los LLMs.
-- Manejo de Errores de Infraestructura: Filtros proactivos para errores de nube 503 (Overloaded) y 429 (Rate Limit).
-- Sanitización de Salida: Extracción quirúrgica de instrucciones atómicas (PROCEDENTE/BLOQUEO) eliminando el ruido semántico antes de la inyección en el ERP (Vantaca/Switch).
+### 1. Hybrid SLM Router & Cost Control (<1.5s Latency)
+* **Enrutamiento de Baja Latencia:** Utiliza modelos de lenguaje pequeños (*Small Language Models - SLMs*) optimizados para tareas deterministas de alta frecuencia (como clasificación de intenciones y ruteo de peticiones), respondiendo en menos de 1.5 segundos.
+* **Economía de Tokens:** Evita el uso innecesario de LLMs pesados de frontera para tareas repetitivas, reduciendo los costos operativos de inferencia en más de un 70%.
 
-2. Multi-Agent Orchestration (ISO 8583 Compliant)
+### 2. The Resilience Shield (Deterministic Recovery Layer)
+* **Cincel Regex de Misión Crítica:** Intercepta el no-determinismo y el ruido conversacional de los LLMs.
+* **Manejo de Errores de Infraestructura:** Filtros proactivos para errores de nube `503` (Overloaded) y `429` (Rate Limit), activando protocolos de reintento en la sombra (*Shadow Retries*).
+* **Sanitización de Salida:** Extracción quirúrgica de instrucciones atómicas (`PROCEDENTE`, `IMPROCEDENTE`, `BLOQUEO`), asegurando que los sistemas core solo reciban datos limpios y estructurados.
 
-Arquitectura basada en agentes especialistas que colaboran bajo un marco de Gobernanza Estricta:
-- Forensic Agent: Extracción de metadatos de logs ruidosos en formato bancario estándar.
-- Compliance Judge: Aplicación de reglas de negocio (Visa/Mastercard) mediante Semantic Grounding.
-- Audit Agent: El supervisor de integridad que valida la cadena de evidencia antes de la decisión humana.
+### 3. Human-in-the-Loop (HITL) & Sovereign Control
+* **Panel de Soberanía Operativa:** Impide que los agentes ejecuten acciones de forma autónoma y destructiva (*Ghost Approvals*). El sistema congela la ejecución hasta recibir el veredicto humano mediante controles estrictos: **`Proceed`**, **`Modify`**, o **`Reject`**.
 
-3. Case Study: Neutralización de Phishing Semántico (TXN-005)
+### 4. Immutable Audit Trail (Bitácora Forense)
+* **Trazabilidad Regulatoria:** Cada decisión humana queda registrada en una bitácora inmutable en tiempo real que detalla el usuario autorizador, las credenciales regulatorias (Cédula A), la acción tomada y el *Timestamp* bajo sellos de cifrado seguros.
 
-El sistema demostró su capacidad de Hardening al identificar una vulnerabilidad de fraude financiero en una transacción de $15,000 MXN. Mientras que un agente tradicional habría validado el cargo por metadatos (Chip+NIP), ProsaGuard AI detectó una discrepancia de identidad en el emisor y disparó un Bloqueo de Emergencia.
+---
 
-## 🛠️ **Architecture & Sovereignty**
-- Stack: Python 3.12, Streamlit, Regex-based Sanitization.
-- Compliance: Diseñado bajo los estándares de la CNSF y el rigor de una Cédula A de Seguros.
-- Business Impact: Reducción proyectada del 40% en OPEX y mejora del 90% en el SLA de aclaraciones interbancarias.
+## 🏗️ Architecture & Modular Design
 
-## ✒️ **Author**
+El repositorio está estructurado bajo principios estrictos de *Clean Code* y modularidad para garantizar escalabilidad y mantenibilidad:
+
+```text
+sovereign-guard-suite/
+│
+├── .gitignore
+├── requirements.txt
+├── shield.py       # Capa de Resiliencia (Escudo Regex y manejo de errores 503/429)
+├── router.py       # Lógica del Hybrid SLM Router y optimización de costos
+└── app.py          # Panel de Control Principal (Streamlit Dashboard & HITL)
+💡 Core Philosophy: Sovereign Engineering
+"La mayoría de los agentes de IA operan en un vacío probabilístico. Si tu arquitectura no permite el control determinista, la memoria relacional y la soberanía humana, tu automatización se romperá en cuanto los procesos dependan de más de un factor crítico."
+— Talia González López, Applied AI Architect
+
+## 📬 **Contact & Professional Links**
 
 Talia González López
-Applied AI Engineer | Founder of #AgenticBuildersLATAM
-"Building the unshakeable infrastructure for the future of finance."
-
-[LinkedIn](https://www.linkedin.com/in/talia-gonzalezl/)
+* Applied AI Architec
+* Founder of [#AgenticBuildersLATAM](https://www.linkedin.com/groups/37010179/)
+* [LinkedIn](https://www.linkedin.com/in/talia-gonzalezl/)
+* [Live App](https://s-guard-ai.streamlit.app)
+* Technical Briefings & War Stories: [YouTube Channel - Agentic AI War Stories](https://www.youtube.com/@TaliaGonzalezL749)
