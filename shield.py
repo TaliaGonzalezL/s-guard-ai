@@ -1,76 +1,75 @@
 import logging
-
-# Configuración de logging para observabilidad
-logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
-logger = logging.getLogger("SovereignShield")
-
-class SovereignResilienceShield:
-    """
-    Capa de protección de infraestructura: Intercepta caídas de proveedores de IA 
-    antes de que afecten la experiencia del usuario o saturen el sistema.
-    """
-    @staticmethod
-    def handle_infrastructure_errors(error_code: str) -> str:
-        if error_code == "503":
-            logger.warning("⚠️ [SovereignGuard]: Nodo de IA Saturado (503). Activando Shadow Retry...")
-            return "INFRA_LATENCY_RETRY (Shadow Retry Activated)"
-        elif error_code == "429":
-            logger.error("🚨 [SovereignGuard]: Límite de Cuota Alcanzado (429). Pausando throughput...")
-            return "QUOTA_EXCEEDED_HALT"
-        return "SUCCESS"
 import re
+import time
+from functools import wraps
+from typing import Callable, Any
 import streamlit as st
 
-# CLASE DE SOBERANÍA TÉCNICA: ESCUDO REGEX (SOVEREIGNGUARD AI)
+# Configuración de observabilidad
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
+logger = logging.getLogger("SovereignGuardShield")
+
 class SovereignResilienceShield:
-    @staticmethod
-    def handle_infrastructure_errors(error_str):
-        """
-        Escudo de Misión Crítica: Detecta fallos de nube (GCP/Vertex AI) antes de que 
-        afecten el Switch o la infraestructura transaccional del cliente.
-        """
-        error_str = str(error_str)
-
-        # 1. FILTRO DE DISPONIBILIDAD (503 - Overloaded)
-        if "503" in error_str or "overloaded" in error_str.lower():
-            st.warning("⚠️ **SovereignGuard: Nodo de Inteligencia Saturado.**")
-            st.info("Detectada latencia en el proveedor de nube. Activando protocolo de reintento en la sombra...")
-            return "INFRA_LATENCY_RETRY"
-
-        # 2. FILTRO DE CUOTA (429 - Rate Limit)
-        elif "429" in error_str or "quota" in error_str.lower():
-            st.error("🚨 **LÍMITE DE TRANSACCIONES ALCANZADO.**")
-            st.info("El volumen de aclaraciones excede el throughput actual. Escalando capacidad...")
-            return "QUOTA_EXCEEDED_HALT"
-
-        return None
-
+    """
+    Capa de Soberanía Técnica: Combina reintentos resilientes ante caídas de nube (429/503)
+    con sanitización determinista por Regex para evitar alucinaciones de LLMs.
+    """
 
     @staticmethod
-    def sanitize_output(llm_output):
+    def smart_retry_with_backoff(max_retries: int = 3, initial_delay: float = 1.0):
         """
-        El cincel de Talia: Limpia el ruido del LLM para asegurar
-        que el sistema reciba datos atómicos y estructurados.
+        Decorador de nivel Staff: Envuelve llamadas a APIs de LLMs, atrapando fallos
+        de infraestructura y reintentando en la sombra con retroceso exponencial.
+        """
+        def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
+            @wraps(func)
+            def wrapper(*args: Any, **kwargs: Any) -> Any:
+                delay = initial_delay
+                for attempt in range(1, max_retries + 1):
+                    try:
+                        logger.info(f"🔄 [SovereignGuard Intento {attempt}/{max_retries}] Ejecutando: {func.__name__}...")
+                        return func(*args, **kwargs)
+                    
+                    except Exception as e:
+                        error_str = str(e)
+                        logger.warning(f"⚠️ [Fallo de Infraestructura detectado]: {error_str}")
+                        
+                        # Detección de errores críticos de nube (503 / 429)
+                        if "503" in error_str or "overloaded" in error_str.lower():
+                            st.warning(f"⚠️ **SovereignGuard:** Nodo de IA Saturado (Intento {attempt}). Reintentando en la sombra...")
+                        elif "429" in error_str or "quota" in error_str.lower():
+                            st.error(f"🚨 **SovereignGuard:** Límite de Cuota Alcanzado. Aplicando backoff...")
+
+                        if attempt == max_retries:
+                            logger.error(f"🚨 [Fallo Crítico]: Se agotaron los reintentos. Activando respaldo elegante.")
+                            return "FALLO_DE_INFRAESTRUCTURA_DEGRADADO"
+                        
+                        time.sleep(delay)
+                        delay *= 2  # Retroceso exponencial
+                        
+                return "ERROR_INESPERADO"
+            return wrapper
+        return decorator
+
+    @staticmethod
+    def sanitize_output(llm_output: str) -> str:
+        """
+        El cincel de Talia: Limpia el ruido del LLM para entregar datos atómicos.
         """
         try:
-            # Busca el patrón exacto de la decisión con máxima resiliencia
+            llm_output = str(llm_output)
             decision_pattern = r"DECISIÓN:\s*(PROCEDENTE|IMPROCEDENTE|BLOQUEO)"
             match = re.search(decision_pattern, llm_output, re.IGNORECASE)
             
             if match:
                 return match.group(1).upper() 
             else:
-                # ESTRATEGIA DE RESCATE (Failsafe)
                 upper_output = llm_output.upper()
                 if "PROCEDENTE" in upper_output: return "PROCEDENTE"
                 if "IMPROCEDENTE" in upper_output: return "IMPROCEDENTE"
                 if "BLOQUEO" in upper_output: return "BLOQUEO"
-
-                # Rescate final vía "Final Answer"
                 if "FINAL ANSWER:" in upper_output:
                     return upper_output.split("FINAL ANSWER:")[-1].strip()
-
                 return "ERROR_DE_FORMATO"
-
         except Exception:
             return "RESCATE_MANUAL_REQUERIDO"

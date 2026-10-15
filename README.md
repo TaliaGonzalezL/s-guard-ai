@@ -24,10 +24,10 @@ Diseñado para resolver el *"Reliability Gap"* (Brecha de Confiabilidad) y los c
 * **Enrutamiento de Baja Latencia:** Utiliza modelos de lenguaje pequeños (*Small Language Models - SLMs*) optimizados para tareas deterministas de alta frecuencia (como clasificación de intenciones y ruteo de peticiones), respondiendo en menos de 1.5 segundos.
 * **Economía de Tokens:** Evita el uso innecesario de LLMs pesados de frontera para tareas repetitivas, reduciendo los costos operativos de inferencia en más de un 70%.
 
-### 2. The Resilience Shield (Deterministic Recovery Layer)
-* **Cincel Regex de Misión Crítica:** Intercepta el no-determinismo y el ruido conversacional de los LLMs.
-* **Manejo de Errores de Infraestructura:** Filtros proactivos para errores de nube `503` (Overloaded) y `429` (Rate Limit), activando protocolos de reintento en la sombra (*Shadow Retries*).
-* **Sanitización de Salida:** Extracción quirúrgica de instrucciones atómicas (`PROCEDENTE`, `IMPROCEDENTE`, `BLOQUEO`), asegurando que los sistemas core solo reciban datos limpios y estructurados.
+### 2. 🛡️ SovereignResilienceShield & Decorador de Reintento
+Para garantizar una disponibilidad del 99.9% en entornos transaccionales, SovereignGuard incorpora una capa de protección de infraestructura que mitiga fallos de nube (429 Rate Limits / 503 Overloaded) mediante:
+* **Smart Retry with Exponential Backoff (`smart_retry_with_backoff`):** Decorador de nivel Staff que envuelve llamadas críticas a APIs de IA, reintentando de forma silenciosa (*shadow retry*) y duplicando el tiempo de espera para evitar saturar el proveedor.
+* **Cincel Determinista (Regex Sanitizer):** Capa de saneamiento que intercepta las respuestas caóticas o conversacionales de los LLMs y las convierte en datos atómicos y estructurados (`PROCEDENTE`, `IMPROCEDENTE`, `BLOQUEO`), previniendo alucinaciones en el core de pagos.
 
 ### 3. Human-in-the-Loop (HITL) & Sovereign Control
 * **Panel de Soberanía Operativa:** Impide que los agentes ejecuten acciones de forma autónoma y destructiva (*Ghost Approvals*). El sistema congela la ejecución hasta recibir el veredicto humano mediante controles estrictos: **`Proceed`**, **`Modify`**, o **`Reject`**.
