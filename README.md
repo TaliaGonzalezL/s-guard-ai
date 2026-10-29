@@ -73,7 +73,7 @@ streamlit run app.py
 
 ## 💡 Core Philosophy: Sovereign Engineering
 *"La mayoría de los agentes de IA operan en un vacío probabilístico. Si tu arquitectura no permite el control determinista, la memoria relacional y la soberanía humana, tu automatización se romperá en cuanto los procesos dependan de más de un factor crítico."*
-```
+
 -Talia González López, Applied AI Architect.
 
 
