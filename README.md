@@ -58,18 +58,24 @@ sovereign-guard-suite/
 ├── app.py             # Panel de Control Principal (Streamlit Dashboard & Auditoría HITL)
 └── app_pagos.py       # Triage transaccional financiero bajo protocolo ISO 8583
 ```
-## ⚡  Quickstart
+## ⚡ Quickstart
 
 ### 1. Levantar el Microservicio REST (FastAPI Backend)
+```bash
 uvicorn api:app --reload --port 8000
-*Documentación interactiva Swagger disponible automáticamente en:* http://localhost:8000/docs
+```
+*Documentación interactiva Swagger disponible automáticamente en: [http://localhost:8000/docs](http://localhost:8000/docs)*
 
 ### 2. Levantar el Panel de Auditoría HITL (Streamlit Dashboard)
+```bash
 streamlit run app.py
+```
 
 ## 💡 Core Philosophy: Sovereign Engineering
 *"La mayoría de los agentes de IA operan en un vacío probabilístico. Si tu arquitectura no permite el control determinista, la memoria relacional y la soberanía humana, tu automatización se romperá en cuanto los procesos dependan de más de un factor crítico."*
+```
 -Talia González López, Applied AI Architect.
+
 
 ## 📬 **Contact & Professional Links**
 
